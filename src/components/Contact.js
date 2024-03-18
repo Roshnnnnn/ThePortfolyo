@@ -1,9 +1,26 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Counter from "./Counter";
+import { fetchData } from "../../pages/api/hello";
+
 import ContactPopup from "./popup/ContactPopup";
 
 const Contact = () => {
   const [active, setActive] = useState(false);
+  const [media, setMedia] = useState([]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await fetchData();
+        setMedia(data.social_handles);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <Fragment>
       <ContactPopup show={active} close={() => setActive(false)} />
@@ -81,44 +98,25 @@ const Contact = () => {
               </div>
               <div className="right">
                 <div className="social">
-                  <ul>
-                    <li>
-                      <a href="#">
+                  <div>
+                    {media.map((item, index) => (
+                      <a
+                        href={item.url}
+                        key={index}
+                        style={{ marginRight: "20px" }}
+                      >
                         <img
-                          className="svg"
-                          src="img/svg/social/facebook-stroke.svg"
-                          alt=""
+                          src={item.image.url}
+                          alt={item.platform}
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            marginRight: "20px",
+                          }}
                         />
                       </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <img
-                          className="svg"
-                          src="img/svg/social/twitter-stroke.svg"
-                          alt=""
-                        />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <img
-                          className="svg"
-                          src="img/svg/social/linkedin-stroke.svg"
-                          alt=""
-                        />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <img
-                          className="svg"
-                          src="img/svg/social/instagram-stroke.svg"
-                          alt=""
-                        />
-                      </a>
-                    </li>
-                  </ul>
+                    ))}
+                  </div>
                 </div>
                 <div className="copyright">
                   <p>
