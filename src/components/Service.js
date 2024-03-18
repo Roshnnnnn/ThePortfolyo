@@ -50,7 +50,7 @@ const Service = () => {
                             <span>{item.charge}</span>
                           </div>
                           <div className="text">
-                            <p style={{ width: "auto" }}>{item.desc}</p>
+                            <p>{item.desc}</p>
                           </div>
                         </div>
                       </li>
