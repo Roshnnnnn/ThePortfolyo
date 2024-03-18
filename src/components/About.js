@@ -8,7 +8,10 @@ const About = () => {
     const fetchUserData = async () => {
       try {
         const data = await fetchData();
-        setSkills(data.skills);
+        const filteredData = data.skills.filter(
+          (item) => item.enabled === true
+        );
+        setSkills(filteredData);
       } catch (err) {
         console.log(err.message);
       }
@@ -54,69 +57,6 @@ const About = () => {
                 </p>
               </div>
               <div className="dodo_progress">
-                {/* <ul>
-                  <li>
-                    <div className="list_inner">
-                      <div
-                        className="progress_inner skillsInner___"
-                        data-value={90}
-                        data-color="#000"
-                      >
-                        <div className="background">
-                          <div className="bar">
-                            <div className="bar_in" />
-                          </div>
-                        </div>
-                        <div className="percent">
-                          <img
-                            className="svg"
-                            src="img/svg/photoshop.svg"
-                            alt=""
-                          />
-                          <span className="number">90%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="list_inner">
-                      <div
-                        className="progress_inner skillsInner___"
-                        data-value={75}
-                        data-color="#0ACF83"
-                      >
-                        <div className="background">
-                          <div className="bar">
-                            <div className="bar_in" />
-                          </div>
-                        </div>
-                        <div className="percent">
-                          <img className="svg" src="img/svg/xd.svg" alt="" />
-                          <span className="number">75%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="list_inner">
-                      <div
-                        className="progress_inner skillsInner___"
-                        data-value={80}
-                        data-color="#f75023"
-                      >
-                        <div className="background">
-                          <div className="bar">
-                            <div className="bar_in" />
-                          </div>
-                        </div>
-                        <div className="percent">
-                          <img className="svg" src="img/svg/figma.svg" alt="" />
-                          <span className="number">80%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul> */}
                 <ul>
                   {skills.map((item, index) => (
                     <li key={index}>

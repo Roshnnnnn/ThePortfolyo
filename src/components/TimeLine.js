@@ -8,7 +8,11 @@ const TimeLine = () => {
     const fetchTestimonials = async () => {
       try {
         const data = await fetchData();
-        setUser(data.timeline);
+        const filteredData = data.timeline.filter(
+          (item) => item.forEducation === true
+        );
+        setUser(filteredData);
+        console.log(filteredData);
       } catch (error) {
         console.log(error.message);
       }

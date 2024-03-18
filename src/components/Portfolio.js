@@ -64,7 +64,7 @@ const Portfolio = () => {
                   <li className="grid-sizer" key={project._id}>
                     <div className="list_inner">
                       <div className="image">
-                        <img src={imageURL[index]} alt="" />{" "}
+                        <img src={imageURL[index]} alt="" />
                         <div
                           className="main"
                           // data-img-url={project.image.url}
