@@ -7,7 +7,7 @@ import { fetchData } from "../../pages/api/hello";
 const Portfolio = () => {
   const [activeDetailsPopup, setActiveDetailsPopup] = useState(false);
   const [user, setUser] = useState([]);
-  const [image, setImage] = useState("");
+  const [imageURL, setImageURL] = useState("");
 
   // Isotope
   useEffect(() => {
@@ -24,6 +24,12 @@ const Portfolio = () => {
       try {
         const data = await fetchData();
         setUser(data.projects);
+
+        const imageUrls = data.projects.map((project) => project.image.url);
+        setImageURL(imageUrls);
+        if (data.projects.image && data.projects.image.url) {
+          console.log(data.image.url);
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -54,19 +60,20 @@ const Portfolio = () => {
             </div>
             <div className="portfolio_list wow fadeInUp" data-wow-duration="1s">
               <ul className="gallery_zoom grid">
-                {user.map((project) => (
+                {user.map((project, index) => (
                   <li className="grid-sizer" key={project._id}>
                     <div className="list_inner">
                       <div className="image">
-                        <img src={project.image.url} alt="" />
+                        <img src={imageURL[index]} alt="" />{" "}
                         <div
                           className="main"
-                          data-img-url={project.image.url}
+                          // data-img-url={project.image.url}
                         />
                       </div>
                       <div className="details">
                         <span className="category">{project.sequence}</span>
                         <h3 className="title">{project.title}</h3>
+                        <span>{project.techStack.join(", ")}</span>
                         <img className="svg" src="img/svg/vector5.svg" alt="" />
                       </div>
                       <a
