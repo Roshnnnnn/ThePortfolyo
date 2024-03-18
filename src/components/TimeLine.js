@@ -1,4 +1,21 @@
+import { useEffect, useState } from "react";
+import { fetchData } from "../../pages/api/hello";
+
 const TimeLine = () => {
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const data = await fetchData();
+        setUser(data.timeline);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchTestimonials();
+  }, []);
+
   return (
     <div className="tonni_tm_section">
       <div className="tonni_tm_timeline">
@@ -20,135 +37,46 @@ const TimeLine = () => {
               <div className="timeline_list">
                 <span className="line" />
                 <ul>
-                  <li className="wow fadeInUp" data-wow-duration="1s">
-                    <ul className="items">
-                      <li>
-                        <div className="list_inner">
-                          <div className="details">
-                            <img
-                              className="svg"
-                              src="img/svg/social/be.svg"
-                              alt=""
-                            />
-                            <div className="title">
-                              <h3>UI/UX Designer</h3>
-                              <span>Senior Designer</span>
-                            </div>
-                            <div className="text">
-                              <p>
-                                Nunc hendrerit, justo vel ultricieselei fen
-                                pretium leo, ac finibus nulla eros.
-                              </p>
+                  {user.map((item) => (
+                    <li
+                      key={item._id}
+                      className="wow fadeInUp"
+                      data-wow-duration="1s"
+                    >
+                      <ul className="items">
+                        <li>
+                          <div className="list_inner">
+                            <div className="details">
+                              <div className="title">
+                                <h3>{item.company_name}</h3>
+                                <span>{item.jobTitle}</span>
+                              </div>
+                              <div className="text">
+                                <p>{item.summary}</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="list_inner">
-                          <div className="year">
-                            <span>2020-now</span>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="list_inner">
-                          <div className="image">
-                            <img src="img/thumbs/37-25.jpg" alt="" />
-                            <div
-                              className="main"
-                              data-img-url="img/timeline/1.jpg"
-                            />
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="wow fadeInUp" data-wow-duration="1s">
-                    <ul className="items">
-                      <li>
-                        <div className="list_inner">
-                          <div className="details">
-                            <img
-                              className="svg"
-                              src="img/svg/social/dribbble.svg"
-                              alt=""
-                            />
-                            <div className="title">
-                              <h3>Graphic Designer</h3>
-                              <span>Junior Designer</span>
-                            </div>
-                            <div className="text">
-                              <p>
-                                Nunc hendrerit, justo vel ultricieselei fen
-                                pretium leo, ac finibus nulla eros.
-                              </p>
+                        </li>
+                        <li>
+                          <div className="list_inner">
+                            <div className="year">
+                              <span>
+                                {new Date(item.startDate).getFullYear()} -
+                                {new Date(item.endDate).getFullYear()}
+                              </span>
                             </div>
                           </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="list_inner">
-                          <div className="year">
-                            <span>2018-2020</span>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="list_inner">
-                          <div className="image">
-                            <img src="img/thumbs/37-25.jpg" alt="" />
-                            <div
-                              className="main"
-                              data-img-url="img/timeline/2.jpg"
-                            />
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="wow fadeInUp" data-wow-duration="1s">
-                    <ul className="items">
-                      <li>
-                        <div className="list_inner">
-                          <div className="details">
-                            <img
-                              className="svg"
-                              src="img/svg/social/instagram.svg"
-                              alt=""
-                            />
-                            <div className="title">
-                              <h3>Content Manager</h3>
-                              <span>Sales Manager</span>
-                            </div>
-                            <div className="text">
-                              <p>
-                                Nunc hendrerit, justo vel ultricieselei fen
-                                pretium leo, ac finibus nulla eros.
-                              </p>
+                        </li>
+                        <li>
+                          <div className="list_inner">
+                            <div className="image">
+                              <p>{item.bulletPoints}</p>
                             </div>
                           </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="list_inner">
-                          <div className="year">
-                            <span>2016-2018</span>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="list_inner">
-                          <div className="image">
-                            <img src="img/thumbs/37-25.jpg" alt="" />
-                            <div
-                              className="main"
-                              data-img-url="img/timeline/3.jpg"
-                            />
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
+                        </li>
+                      </ul>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
