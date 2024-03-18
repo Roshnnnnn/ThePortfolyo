@@ -1,9 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { scroll_ } from "../utilits";
+import { fetchData } from "../../pages/api/hello";
 
 const Header = () => {
+  const [media, setMedia] = useState([]);
+
   useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await fetchData();
+        setMedia(data.social_handles);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchUserData();
     window.addEventListener("scroll", scroll_);
+
+    return () => {
+      window.removeEventListener("scroll", scroll_);
+    };
   }, []);
 
   return (
@@ -38,42 +55,27 @@ const Header = () => {
             </ul>
             <span className="ccc" />
           </div>
-          <div className="follow">
-            <span>Follow Us:</span>
-            <ul>
-              <li>
-                <a href="#">
+          <div
+            className="follow"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <span style={{ marginRight: "10px" }}>Follow Us:</span>
+            <div>
+              {media.map((item, index) => (
+                <a href={item.url} key={index} style={{ marginRight: "10px" }}>
                   <img
-                    className="svg"
-                    src="img/svg/social/facebook.svg"
-                    alt=""
+                    src={item.image.url}
+                    alt={item.platform}
+                    style={{ width: "30px", height: "30px" }}
                   />
                 </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img
-                    className="svg"
-                    src="img/svg/social/twitter.svg"
-                    alt=""
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img className="svg" src="img/svg/social/vimeo.svg" alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img className="svg" src="img/svg/social/skype.svg" alt="" />
-                </a>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default Header;
