@@ -25,10 +25,14 @@ const Portfolio = () => {
     const fetchUserData = async () => {
       try {
         const data = await fetchData();
-        setUser(data.projects.filter((project) => project.enabled === true));
+        setUser(
+          data.projects
+            .filter((project) => project.enabled === true)
+            .sort((a, b) => a.sequence - b.sequence)
+        );
         console.log(data.projects.image.url);
 
-        const imageUrls = data.projects.map((project) => project.image.url);
+        const imageUrls = data?.projects.map((project) => project?.image.url);
         setImageURL(imageUrls);
         setLoading(false);
         if (data.projects.image && data.projects.image.url) {
@@ -91,7 +95,6 @@ const Portfolio = () => {
                         <div className="details">
                           <span className="category">{project.sequence}</span>
                           <h3 className="title">{project.title}</h3>
-                          <span>{project.techStack.join(", ")}</span>
                           <img
                             className="svg"
                             src="img/svg/vector5.svg"

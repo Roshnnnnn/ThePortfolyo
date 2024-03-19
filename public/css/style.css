@@ -514,14 +514,13 @@ h6 {
 .tonni_tm_hero .background .image {
   position: absolute;
   width: 30rem;
-  top: 0px;
-  bottom: 0px;
-  float: right;
+  top: 0;
   right: 0px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   z-index: 1;
+  height: 100%;
 }
 
 .tonni_tm_hero .background .overlay {
@@ -540,7 +539,7 @@ h6 {
 
 .tonni_tm_hero .content {
   width: 100%;
-  height: 50rem;
+  height: 80rem;
   float: left;
   position: relative;
 }
@@ -711,18 +710,21 @@ h6 {
 }
 
 /* Media Query */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .tonni_tm_hero {
     top: 2rem; /* Adjust as needed */
   }
   .tonni_tm_hero .background .image {
-    width: 20rem; /* Adjust as needed */
-    left: 40rem; /* Adjust as needed */
+    display: none;
   }
   .tonni_tm_hero .welcome {
     width: 90%; /* Adjusted */
     margin: 0 auto 20px; /* Adjusted */
     text-align: center; /* Adjusted */
+  }
+
+  .tonni_tm_hero .content {
+    height: 70rem; /* Set height to auto */
   }
 
   .tonni_tm_hero .welcome:before {
@@ -1186,20 +1188,20 @@ h6 {
 }
 .tonni_tm_portfolio .portfolio_list ul li .image .main {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   transform: scale(1) translateZ(0);
+  transition: all 0.3s ease;
 
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
 }
 .tonni_tm_portfolio .list_inner:hover .image .main {
   transform: scale(1.1) translateZ(0);
