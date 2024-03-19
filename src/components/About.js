@@ -63,7 +63,7 @@ const About = () => {
                       <div className="list_inner">
                         <div
                           className="progress_inner skillsInner___"
-                          data-value={item.percentage}
+                          data-value={item?.percentage}
                           data-color="#f75023"
                         >
                           <div className="background">
@@ -72,8 +72,8 @@ const About = () => {
                             </div>
                           </div>
                           <div className="percent">
-                            <img className="svg" src={item.image.url} alt="" />
-                            <span className="number">{item.percentage} %</span>
+                            <img className="svg" src={item?.image.url} alt="" />
+                            <span className="number">{item?.percentage} %</span>
                           </div>
                         </div>
                       </div>

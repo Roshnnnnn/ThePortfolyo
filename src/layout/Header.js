@@ -62,9 +62,9 @@ const Header = () => {
             <span style={{ marginRight: "10px" }}>Follow Us:</span>
             <div>
               {media.map((item, index) => (
-                <a href={item.url} key={index} style={{ marginRight: "10px" }}>
+                <a href={item?.url} key={index} style={{ marginRight: "10px" }}>
                   <img
-                    src={item.image.url}
+                    src={item?.image.url}
                     alt={item.platform}
                     style={{ width: "30px", height: "30px" }}
                   />

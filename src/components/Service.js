@@ -8,7 +8,11 @@ const Service = () => {
     const fetchUserData = async () => {
       try {
         const data = await fetchData();
-        setUser(data.services);
+        // Filter services where enabled is true
+        const enabledServices = data.services.filter(
+          (service) => service.enabled === true
+        );
+        setUser(enabledServices);
       } catch (err) {
         console.log(err.message);
       }
@@ -44,10 +48,10 @@ const Service = () => {
                         key={index}
                       >
                         <div className="list_inner">
-                          <img className="svg" src={item.image.url} alt="" />
+                          <img className="svg" src={item?.image?.url} alt="" />
                           <div className="title">
-                            <h3>{item.name}</h3>
-                            <span>{item.charge}</span>
+                            <h3>{item?.name}</h3>
+                            <span>{item?.charge}</span>
                           </div>
                           <div className="text">
                             <p>{item.desc}</p>

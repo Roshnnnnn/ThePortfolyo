@@ -12,7 +12,6 @@ const TimeLine = () => {
           (item) => item.forEducation === true
         );
         setUser(filteredData);
-        console.log(filteredData);
       } catch (error) {
         console.log(error.message);
       }
@@ -52,11 +51,11 @@ const TimeLine = () => {
                           <div className="list_inner">
                             <div className="details">
                               <div className="title">
-                                <h3>{item.company_name}</h3>
-                                <span>{item.jobTitle}</span>
+                                <h3>{item?.company_name}</h3>
+                                <span>{item?.jobTitle}</span>
                               </div>
                               <div className="text">
-                                <p>{item.summary}</p>
+                                <p>{item?.summary}</p>
                               </div>
                             </div>
                           </div>
@@ -65,8 +64,8 @@ const TimeLine = () => {
                           <div className="list_inner">
                             <div className="year">
                               <span>
-                                {new Date(item.startDate).getFullYear()} -
-                                {new Date(item.endDate).getFullYear()}
+                                {new Date(item?.startDate).getFullYear()} -
+                                {new Date(item?.endDate).getFullYear()}
                               </span>
                             </div>
                           </div>
@@ -74,7 +73,7 @@ const TimeLine = () => {
                         <li>
                           <div className="list_inner">
                             <div className="image">
-                              <p>{item.bulletPoints}</p>
+                              <p>{item?.bulletPoints}</p>
                             </div>
                           </div>
                         </li>

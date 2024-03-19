@@ -9,7 +9,10 @@ const Testimonials = () => {
     const fetchTestimonials = async () => {
       try {
         const data = await fetchData();
-        setTestimonials(data.testimonials);
+        const filteredTestimonials = data.testimonials.filter(
+          (testimonial) => testimonial.enabled === true
+        );
+        setTestimonials(filteredTestimonials);
       } catch (error) {
         console.log("Error fetching testimonials:", error.message);
       }
@@ -39,7 +42,7 @@ const Testimonials = () => {
             <div className="leftpart">
               <div className="active-image">
                 <img
-                  src={testimonials[activeIndex]?.image.url}
+                  src={testimonials[activeIndex]?.image?.url}
                   alt={testimonials[activeIndex]?.name}
                 />
               </div>
@@ -58,15 +61,14 @@ const Testimonials = () => {
                             <li key={index} className={` grid-item ${index}`}>
                               <span onClick={() => handleItemClick(index)}>
                                 <div
-                                  data-img-url={item && item.image.url}
+                                  data-img-url={item && item?.image?.url}
                                   style={{
                                     backgroundImage: `url(${
-                                      item && item.image.url
+                                      item && item?.image?.url
                                     })`,
                                   }}
                                 />
                               </span>
-                              <span className="hidden">hlo</span>
                             </li>
                           )
                       )}

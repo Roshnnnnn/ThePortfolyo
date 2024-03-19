@@ -8,6 +8,8 @@ const Portfolio = () => {
   const [activeDetailsPopup, setActiveDetailsPopup] = useState(false);
   const [user, setUser] = useState([]);
   const [imageURL, setImageURL] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // Isotope
   useEffect(() => {
@@ -23,15 +25,19 @@ const Portfolio = () => {
     const fetchUserData = async () => {
       try {
         const data = await fetchData();
-        setUser(data.projects);
+        setUser(data.projects.filter((project) => project.enabled === true));
+        console.log(data.projects.image.url);
 
         const imageUrls = data.projects.map((project) => project.image.url);
         setImageURL(imageUrls);
+        setLoading(false);
         if (data.projects.image && data.projects.image.url) {
           console.log(data.image.url);
         }
       } catch (error) {
         console.log(error.message);
+        setError("Error fetching Image. Please try again later.");
+        setLoading(false);
       }
     };
 
@@ -58,33 +64,50 @@ const Portfolio = () => {
                 </p>
               </div>
             </div>
-            <div className="portfolio_list wow fadeInUp" data-wow-duration="1s">
-              <ul className="gallery_zoom grid">
-                {user.map((project, index) => (
-                  <li className="grid-sizer" key={project._id}>
-                    <div className="list_inner">
-                      <div className="image">
-                        <img src={imageURL[index]} alt="" />
-                        <div
-                          className="main"
-                          // data-img-url={project.image.url}
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <div
+                className="portfolio_list wow fadeInUp"
+                data-wow-duration="1s"
+              >
+                <ul className="gallery_zoom grid">
+                  {user.map((project, index) => (
+                    <li className="grid-sizer" key={project._id}>
+                      <div className="list_inner">
+                        <div className="image">
+                          {error ? (
+                            <div>{error}</div>
+                          ) : (
+                            <>
+                              <img src={imageURL[index]} alt="" />
+                              <div
+                                className="main"
+                                data-img-url={project.image.url}
+                              />
+                            </>
+                          )}
+                        </div>
+                        <div className="details">
+                          <span className="category">{project.sequence}</span>
+                          <h3 className="title">{project.title}</h3>
+                          <span>{project.techStack.join(", ")}</span>
+                          <img
+                            className="svg"
+                            src="img/svg/vector5.svg"
+                            alt=""
+                          />
+                        </div>
+                        <a
+                          className="tonni_tm_full_link popup-youtube"
+                          href="//www.youtube.com/embed/7e90gBu4pas?autoplay=1"
                         />
                       </div>
-                      <div className="details">
-                        <span className="category">{project.sequence}</span>
-                        <h3 className="title">{project.title}</h3>
-                        <span>{project.techStack.join(", ")}</span>
-                        <img className="svg" src="img/svg/vector5.svg" alt="" />
-                      </div>
-                      <a
-                        className="tonni_tm_full_link popup-youtube"
-                        href="//www.youtube.com/embed/7e90gBu4pas?autoplay=1"
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

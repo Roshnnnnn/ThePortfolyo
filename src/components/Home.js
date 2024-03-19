@@ -11,8 +11,8 @@ const Home = () => {
         const data = await fetchData();
         setUserData(data.about);
 
-        if (data.about.avatar && data.about.avatar.url) {
-          setImageURL(data.about.avatar.url);
+        if (data?.about?.avatar && data.about.avatar?.url) {
+          setImageURL(data?.about?.avatar?.url);
         } else {
           console.error("Avatar URL not found in data:", data);
         }
@@ -41,11 +41,11 @@ const Home = () => {
                 <br />
                 {userData.name}
               </h3>
-              <span className="welcome">{userData.title}</span>
+              <span className="welcome">{userData?.title}</span>
               <hr />
-              <span className="welcome">{userData.description}</span> <hr />
+              <span className="welcome">{userData?.description}</span> <hr />
               <span className="welcome">
-                Address :- {userData.address} || Phone No. :-
+                Address :- {userData?.address} || Phone No. :-
                 {userData.phoneNumber}
               </span>
               <div className="tonni_tm_button">
