@@ -42,12 +42,7 @@ const Home = () => {
                 {userData.name}
               </h3>
               <span className="welcome">{userData?.title}</span>
-              <hr />
-              <span className="welcome">{userData?.description}</span> <hr />
-              <span className="welcome">
-                Address :- {userData?.address} || Phone No. :-
-                {userData.phoneNumber}
-              </span>
+
               <div className="tonni_tm_button">
                 <a className="anchor" href="#portfolio">
                   See All Projects

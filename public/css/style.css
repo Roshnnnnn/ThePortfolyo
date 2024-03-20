@@ -118,6 +118,15 @@ body::-webkit-scrollbar-thumb {
   position: relative;
   clear: both;
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
 .container.bigger {
   max-width: 1700px;
 }
@@ -286,7 +295,6 @@ h6 {
 }
 .tonni_tm_section {
   width: 100%;
-  height: auto;
   clear: both;
   float: left;
 }
@@ -496,7 +504,7 @@ h6 {
 
 .tonni_tm_hero {
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   float: left;
   position: relative;
   overflow: hidden;
@@ -523,6 +531,16 @@ h6 {
   height: 100%;
 }
 
+@media screen and (max-width: 1000px) {
+  .tonni_tm_hero .background .image {
+    display: none;
+  }
+
+  .tonni_tm_hero {
+    height: 50vh;
+  }
+}
+
 .tonni_tm_hero .background .overlay {
   position: absolute;
   top: 0px;
@@ -539,14 +557,14 @@ h6 {
 
 .tonni_tm_hero .content {
   width: 100%;
-  height: 80rem;
+  height: 30rem;
   float: left;
   position: relative;
 }
 
 .tonni_tm_hero .content_in {
   position: absolute;
-  top: 60%;
+  top: 70%;
   transform: translateY(-50%);
 }
 
@@ -709,58 +727,17 @@ h6 {
   }
 }
 
-/* Media Query */
-@media (max-width: 1024px) {
-  .tonni_tm_hero {
-    top: 2rem; /* Adjust as needed */
+@media screen and (max-width: 1000px) {
+  .tonni_tm_hero .content_in {
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 100%;
   }
-  .tonni_tm_hero .background .image {
-    display: none;
-  }
+
   .tonni_tm_hero .welcome {
-    width: 90%; /* Adjusted */
-    margin: 0 auto 20px; /* Adjusted */
-    text-align: center; /* Adjusted */
-  }
-
-  .tonni_tm_hero .content {
-    height: 70rem; /* Set height to auto */
-  }
-
-  .tonni_tm_hero .welcome:before {
-    left: calc(50% - 35px); /* Adjusted */
-    bottom: -12px; /* Adjusted */
-  }
-  .tonni_tm_hero .play_button {
-    left: 30px; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape1 {
-    bottom: 20%; /* Adjust as needed */
-    left: 5%; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape2 {
-    bottom: 2%; /* Adjust as needed */
-    left: 15%; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape3 {
-    top: 15%; /* Adjust as needed */
-    left: 25%; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape4 {
-    top: 32%; /* Adjust as needed */
-    left: 45%; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape5 {
-    bottom: 10%; /* Adjust as needed */
-    left: 35%; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape6 {
-    top: 25%; /* Adjust as needed */
-    right: 10%; /* Adjust as needed */
-  }
-  .tonni_tm_hero .shape7 {
-    bottom: 17%; /* Adjust as needed */
-    right: 7%; /* Adjust as needed */
+    width: auto;
+    margin: 0 auto 60px;
   }
 }
 
@@ -783,9 +760,17 @@ h6 {
   display: flex;
 }
 .tonni_tm_about .left {
-  width: 50%;
+  width: auto;
   position: relative;
 }
+
+@media screen and (max-width: 1000px) {
+  .tonni_tm_about .left {
+    margin: 0 auto;
+    float: none;
+  }
+}
+
 .tonni_tm_about .left .circle_shape {
   position: absolute;
   right: 10px;
@@ -800,6 +785,14 @@ h6 {
   display: flex;
   align-items: flex-end;
 }
+
+@media screen and (max-width: 1000px) {
+  .tonni_tm_about .left_inner {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
 .tonni_tm_about .year {
   position: relative;
 }
@@ -883,7 +876,7 @@ h6 {
   float: left;
   margin-bottom: 50px;
 }
-.dodo_progress {
+/* .dodo_progress {
   top: 10px;
   width: 100%;
   float: left;
@@ -904,13 +897,50 @@ h6 {
   clear: both;
   float: left;
   position: relative;
+} */
+
+.dodo_progress {
+  top: 10px;
+  width: 100%;
+  float: left;
+}
+
+.dodo_progress ul {
+  margin: 100px auto 0 auto; /* Center the ul element horizontally */
+  list-style-type: none;
+  padding: 0; /* Remove default padding */
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Default to 3 columns */
+  gap: 20px; /* Add gap between grid items */
+}
+
+.dodo_progress ul li {
+  margin-bottom: 50px;
+  padding-left: 80px;
+}
+
+.dodo_progress ul li .list_inner {
+  width: 100%;
+  height: auto;
+  clear: both;
+  position: relative;
+}
+
+@media screen and (max-width: 999px) {
+  .dodo_progress ul {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /* Change to 2 columns on tablets */
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .dodo_progress ul li .list_inner {
-    width: auto;
-    float: none;
-    position: static;
+  .dodo_progress ul {
+    grid-template-columns: repeat(
+      1,
+      minmax(0, 1fr)
+    ); /* Change to 1 column on mobile */
   }
 }
 

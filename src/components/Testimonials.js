@@ -48,37 +48,50 @@ const Testimonials = () => {
               </div>
             </div>
             <div className="rightpart">
-              <div className="active-review">
-                <p>{testimonials[activeIndex]?.review}</p>
-              </div>
-              <div className="details">
-                <div className="infos">
-                  <div className="avatars">
-                    <ul className="grid-sort">
-                      {testimonials.map(
-                        (item, index) =>
-                          index !== activeIndex && (
-                            <li key={index} className={` grid-item ${index}`}>
-                              <span onClick={() => handleItemClick(index)}>
-                                <div
-                                  data-img-url={item && item?.image?.url}
-                                  style={{
-                                    backgroundImage: `url(${
-                                      item && item?.image?.url
-                                    })`,
-                                  }}
-                                />
-                              </span>
-                            </li>
-                          )
-                      )}
-                    </ul>
-                  </div>
-                  <div className="short">
-                    <div className="name">
-                      <div>
-                        <h3>{testimonials[activeIndex]?.name}</h3>
-                        <span>{testimonials[activeIndex]?.position}</span>
+              <div className="rightpart_in">
+                <div className="main_title">
+                  <h3>
+                    <span className="big">
+                      Testimonials
+                      <span className="small">
+                        Testimonials
+                        <img className="svg" src="img/svg/quote.svg" alt="" />
+                      </span>
+                    </span>
+                  </h3>
+                </div>
+                <div className="active-review">
+                  <p>{testimonials[activeIndex]?.review}</p>
+                </div>
+                <div className="details">
+                  <div className="infos">
+                    <div className="avatars">
+                      <ul className="grid-sort">
+                        {testimonials.map(
+                          (item, index) =>
+                            index !== activeIndex && (
+                              <li key={index} className={` grid-item ${index}`}>
+                                <span onClick={() => handleItemClick(index)}>
+                                  <div
+                                    data-img-url={item && item?.image?.url}
+                                    style={{
+                                      backgroundImage: `url(${
+                                        item && item?.image?.url
+                                      })`,
+                                    }}
+                                  />
+                                </span>
+                              </li>
+                            )
+                        )}
+                      </ul>
+                    </div>
+                    <div className="short">
+                      <div className="name">
+                        <div>
+                          <h3>{testimonials[activeIndex]?.name}</h3>
+                          <span>{testimonials[activeIndex]?.position}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

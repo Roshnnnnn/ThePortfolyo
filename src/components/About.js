@@ -3,19 +3,22 @@ import { fetchData } from "../../pages/api/hello";
 
 const About = () => {
   const [skills, setSkills] = useState([]);
+  const [about, setAbout] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const data = await fetchData();
-        const filteredData = data.skills.filter(
+        const filteredSkills = data.skills.filter(
           (item) => item.enabled === true
         );
-        setSkills(filteredData);
-      } catch (err) {
-        console.log(err.message);
+        setSkills(filteredSkills);
+        setAbout(data.about);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
       }
     };
+
     fetchUserData();
   }, []);
 
@@ -24,10 +27,11 @@ const About = () => {
       <div className="tonni_tm_about">
         <div className="container">
           <div className="about_inner">
+            {/* Left section */}
             <div className="left">
               <div className="left_inner">
                 <div className="year">
-                  <h3>5</h3>
+                  <h3>{about.exp_year}</h3>
                   <span className="rounded">
                     <img src="img/about/flower.png" alt="" />
                   </span>
@@ -44,48 +48,47 @@ const About = () => {
                 </div>
               </div>
             </div>
+            {/* Right section */}
             <div className="right">
               <div className="title">
-                <span>Have A Nice Day!</span>
-                <h3>{`I'm`} Looking For UX/UI Designer.</h3>
+                <span>{about.quote}</span>
+                <hr />
+                <h3>{about.subTitle}</h3>
               </div>
               <div className="text">
-                <p>
-                  With 20 years experience as a professional a graphic designer,
-                  I have acquired the skills and knowledge necessary to make
-                  your project a success.
-                </p>
+                <p>{about.description}</p>
               </div>
-              <div className="dodo_progress">
-                <ul>
-                  {skills.map((item, index) => (
-                    <li key={index}>
-                      <div className="list_inner">
-                        <div
-                          className="progress_inner skillsInner___"
-                          data-value={item?.percentage}
-                          data-color="#f75023"
-                        >
-                          <div className="background">
-                            <div className="bar">
-                              <div className="bar_in" />
-                            </div>
-                          </div>
-                          <div className="percent">
-                            <img className="svg" src={item?.image.url} alt="" />
-                            <span className="number">{item?.percentage} %</span>
-                          </div>
+              {/* Skills section */}
+            </div>
+          </div>
+          <div className="dodo_progress">
+            <ul>
+              {skills.map((item, index) => (
+                <li key={index}>
+                  <div className="list_inner">
+                    <div
+                      className="progress_inner skillsInner___"
+                      data-value={item?.percentage}
+                    >
+                      <div className="background">
+                        <div className="bar">
+                          <div className="bar_in" />
                         </div>
                       </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+                      <div className="percent">
+                        <img className="svg" src={item?.image.url} alt="" />
+                        <span className="number">{item?.percentage} %</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default About;

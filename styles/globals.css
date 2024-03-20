@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  margin: 0;
 }
 .anchor_nav li.current {
   position: relative;

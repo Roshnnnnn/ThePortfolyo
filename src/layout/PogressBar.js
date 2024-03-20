@@ -12,7 +12,7 @@ const PogressBar = () => {
   return (
     <div className="progressbar">
       <a href="#" id="scroll-top" onClick={() => onClick()}>
-        <span className="text" style={{ bottom: "150.75px" }}>
+        <span className="text" style={{ bottom: "190.75px" }}>
           To Top
         </span>
       </a>
