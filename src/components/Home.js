@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../pages/api/hello";
 
 const Home = () => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
   const [imageURL, setImageURL] = useState("");
 
   useEffect(() => {
@@ -26,15 +26,33 @@ const Home = () => {
 
   return (
     <div className="tonni_tm_section" id="home">
-      <div className="tonni_tm_hero">
+      <div
+        className="tonni_tm_hero"
+        style={{
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+        }}
+      >
         <div className="background">
           {imageURL && (
-            <img className="image" src={imageURL} alt="User Avatar" />
+            <img
+              className="image"
+              src={imageURL}
+              alt="User Avatar"
+              style={{
+                overflow: "hidden",
+                filter: "grayscale(100%)", // Convert to grayscale
+                clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)", // Cut the top part
+              }}
+            />
           )}
           <div className="overlay" />
         </div>
         <div className="container">
-          <div className="content">
+          <div className="content" style={{ textAlign: "center" }}>
             <div className="content_in">
               <h3 className="name">
                 <span>I</span> am
@@ -63,6 +81,7 @@ const Home = () => {
             href="//www.youtube.com/embed/7e90gBu4pas?autoplay=1"
           />
         </div>
+        {/* Shape elements */}
         <span className="shape1">
           <img className="svg anim_circle" src="img/svg/icon5.svg" alt="" />
         </span>
@@ -75,9 +94,7 @@ const Home = () => {
         <span className="shape4">
           <img className="svg anim_circle" src="img/svg/icon6.svg" alt="" />
         </span>
-        <span className="shape5">
-          <img className="svg" src="img/svg/icon1.svg" alt="" />
-        </span>
+
         <span className="shape6">
           <img className="svg anim_circle" src="img/svg/icon5.svg" alt="" />
         </span>

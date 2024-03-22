@@ -587,7 +587,7 @@ h6 {
   margin-bottom: 60px;
 }
 
-.tonni_tm_hero .welcome:before {
+/* .tonni_tm_hero .welcome:before {
   position: absolute;
   content: "";
   width: 70px;
@@ -596,7 +596,7 @@ h6 {
   left: 100%;
   margin-left: 2px;
   bottom: 9px;
-}
+} */
 
 .tonni_tm_hero .play_button {
   position: absolute;
@@ -764,10 +764,77 @@ h6 {
   position: relative;
 }
 
+/* Container for the skills section */
+/* Container for the skills section */
+.skills-container {
+  margin-top: 20px;
+}
+
+/* List of skills */
+.skills-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* Grid with flexible columns */
+  gap: 10px; /* Gap between grid items */
+  justify-items: center; /* Center items horizontally */
+}
+
+/* Individual skill item */
+.skill-item {
+  margin-bottom: 10px;
+}
+
+/* Skill container */
+.skill-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Skill percentage bar */
+.skill-progress {
+  width: 100px; /* Adjust width as needed */
+  height: 10px; /* Adjust height as needed */
+  background-color: #f0f0f0; /* Background color for progress bar */
+  border-radius: 5px; /* Rounded corners */
+  margin-right: 10px;
+  overflow: hidden; /* Ensure the progress fill doesn't overflow */
+}
+
+/* Skill percentage bar fill */
+.skill-progress-fill {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #4caf50; /* Green color for filled portion */
+  animation: animateProgress 2s ease forwards; /* Animation for smooth progress */
+}
+
+/* Skill icon */
+.skill-icon {
+  width: 30px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+  margin-right: 5px;
+}
+
+/* Skill percentage */
+.skill-percentage {
+  font-size: 14px;
+}
+
+/* Animation for smooth progress */
+@keyframes animateProgress {
+  from {
+    width: 0%; /* Start from 0% */
+  }
+}
+
 @media screen and (max-width: 1000px) {
-  .tonni_tm_about .left {
-    margin: 0 auto;
-    float: none;
+  .skills-list {
+    justify-items: center; /* Center items horizontally */
   }
 }
 
@@ -854,7 +921,7 @@ h6 {
   z-index: -1;
 }
 .tonni_tm_about .right {
-  width: 50%;
+  width: 100%;
   padding-left: 50px;
 }
 .tonni_tm_about .right .title {
@@ -876,28 +943,6 @@ h6 {
   float: left;
   margin-bottom: 50px;
 }
-/* .dodo_progress {
-  top: 10px;
-  width: 100%;
-  float: left;
-}
-.dodo_progress ul {
-  margin: 100px 0px 0px -40rem;
-  list-style-type: none;
-}
-.dodo_progress ul li {
-  margin: 0px 0px 50px 0px;
-  float: left;
-  padding-left: 80px;
-  width: 33.3333%;
-}
-.dodo_progress ul li .list_inner {
-  width: 100%;
-  height: auto;
-  clear: both;
-  float: left;
-  position: relative;
-} */
 
 .dodo_progress {
   top: 10px;
@@ -3207,7 +3252,7 @@ h6 {
     height: 45px !important;
   }
   .tonni_tm_down {
-    bottom: 3%;
+    bottom: 1%;
   }
   .tonni_tm_hero .play_button a {
     width: 45px;

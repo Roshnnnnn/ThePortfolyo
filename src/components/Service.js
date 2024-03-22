@@ -38,7 +38,7 @@ const Service = () => {
                   </p>
                 </div>
               </div>
-              <div className="service_list">
+              {/* <div className="service_list">
                 <ul>
                   {user.map((item, index) => {
                     return (
@@ -61,6 +61,47 @@ const Service = () => {
                     );
                   })}
                 </ul>
+              </div> */}
+              <div
+                className="service_list"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                  gap: "20px",
+                  justifyContent: "center",
+                }}
+              >
+                {user.map((item, index) => (
+                  <div
+                    className="wow fadeInUp"
+                    data-wow-duration="1s"
+                    key={index}
+                    style={{
+                      marginBottom: "50px",
+                      textAlign: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <img
+                      src={item?.image?.url}
+                      alt=""
+                      style={{ maxWidth: "100px", marginBottom: "10px" }}
+                    />
+                    <div>
+                      <h3 style={{ marginBottom: "5px", fontSize: "20px" }}>
+                        {item?.name}
+                      </h3>
+                      <span style={{ fontSize: "16px", color: "#888" }}>
+                        {item?.charge}
+                      </span>
+                    </div>
+                    <div>
+                      <p style={{ color: "#666", fontSize: "14px" }}>
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             <span className="shape">

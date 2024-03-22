@@ -61,24 +61,29 @@ const About = () => {
               {/* Skills section */}
             </div>
           </div>
-          <div className="dodo_progress">
-            <ul>
-              {skills.map((item, index) => (
-                <li key={index}>
-                  <div className="list_inner">
+          <div className="skills-container">
+            <ul className="skills-list">
+              {skills.map((item) => (
+                <li key={item._id} className="skill-item">
+                  <div className="skill-container">
                     <div
-                      className="progress_inner skillsInner___"
+                      className="skill-progress"
                       data-value={item?.percentage}
                     >
-                      <div className="background">
-                        <div className="bar">
-                          <div className="bar_in" />
-                        </div>
-                      </div>
-                      <div className="percent">
-                        <img className="svg" src={item?.image.url} alt="" />
-                        <span className="number">{item?.percentage} %</span>
-                      </div>
+                      <div
+                        className="skill-progress-fill"
+                        style={{ width: `${item?.percentage}%` }}
+                      ></div>
+                    </div>
+                    <div>
+                      <img
+                        className="skill-icon"
+                        src={item?.image.url}
+                        alt=""
+                      />
+                      <span className="skill-percentage">
+                        {item?.percentage} %
+                      </span>
                     </div>
                   </div>
                 </li>

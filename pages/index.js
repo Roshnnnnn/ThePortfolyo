@@ -8,12 +8,14 @@ import Priceing from "../src/components/Priceing";
 import Service from "../src/components/Service";
 import Testimonials from "../src/components/Testimonials";
 import TimeLine from "../src/components/TimeLine";
+import Education from "../src/components/Education";
 import Header from "../src/layout/Header";
 import Layout from "../src/layout/Layout";
 import MobileMenu from "../src/layout/MobileMenu";
 import Mouse from "../src/layout/Mouse";
 import PogressBar from "../src/layout/PogressBar";
 import { activeSkillProgress } from "../src/utilits";
+import ContactForm from "../src/components/ContactForm";
 const Portfolio = dynamic(() => import("../src/components/Portfolio"), {
   ssr: false,
 });
@@ -38,9 +40,13 @@ const Index = () => {
       {/* PORTFOLIO */}
       <Portfolio />
       {/* /PORTFOLIO */}
+      {/* Education */}
+      <Education />
+      {/* Education */}
       {/* TIMELINE */}
       <TimeLine />
       {/* /TIMELINE */}
+
       {/* PRICING */}
       <Priceing />
       {/* /PRICING */}
@@ -52,6 +58,7 @@ const Index = () => {
       <News />
       {/* /NEWS */}
       {/* CONTACT */}
+      {/* <ContactForm /> */}
       <Contact />
       <Mouse />
       <PogressBar />

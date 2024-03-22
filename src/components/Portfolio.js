@@ -1,19 +1,19 @@
+import React, { Fragment, useEffect, useState } from "react";
 import Isotope from "isotope-layout";
-import { Fragment, useEffect, useState } from "react";
-import { dataImage } from "../utilits";
-import DetailsPopup from "./popup/DetailsPopup";
 import { fetchData } from "../../pages/api/hello";
+import DetailsPopup from "./popup/DetailsPopup";
 
 const Portfolio = () => {
   const [activeDetailsPopup, setActiveDetailsPopup] = useState(false);
   const [user, setUser] = useState([]);
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedTitle, setSelectedTitle] = useState("");
 
   // Isotope
   useEffect(() => {
-    dataImage();
     setTimeout(() => {
       new Isotope(".gallery_zoom", {
         itemSelector: ".grid-item",
@@ -30,16 +30,10 @@ const Portfolio = () => {
             .filter((project) => project.enabled === true)
             .sort((a, b) => a.sequence - b.sequence)
         );
-        console.log(data.projects.image.url);
-
         const imageUrls = data?.projects.map((project) => project?.image.url);
         setImageURL(imageUrls);
         setLoading(false);
-        if (data.projects.image && data.projects.image.url) {
-          console.log(data.image.url);
-        }
       } catch (error) {
-        console.log(error.message);
         setError("Error fetching Image. Please try again later.");
         setLoading(false);
       }
@@ -48,11 +42,20 @@ const Portfolio = () => {
     fetchUserData();
   }, []);
 
+  const openDetailsPopup = (imageUrl, title) => {
+    setSelectedImage(imageUrl);
+    setSelectedTitle(title);
+    setActiveDetailsPopup(true);
+  };
+
   return (
     <Fragment>
       <DetailsPopup
         show={activeDetailsPopup}
         close={() => setActiveDetailsPopup(false)}
+        imageURL={selectedImage}
+        title={selectedTitle}
+        error={error}
       />
       <div className="tonni_tm_section" id="portfolio">
         <div className="tonni_tm_portfolio">
@@ -78,19 +81,26 @@ const Portfolio = () => {
                 <ul className="gallery_zoom grid">
                   {user.map((project, index) => (
                     <li className="grid-sizer" key={project._id}>
-                      <div className="list_inner">
+                      <div
+                        className="list_inner"
+                        onClick={() =>
+                          openDetailsPopup(imageURL[index], project.title)
+                        }
+                      >
                         <div className="image">
-                          {error ? (
-                            <div>{error}</div>
-                          ) : (
-                            <>
-                              <img src={imageURL[index]} alt="" />
-                              <div
-                                className="main"
-                                data-img-url={project.image.url}
-                              />
-                            </>
-                          )}
+                          <div>
+                            {error ? (
+                              <div>{error}</div>
+                            ) : (
+                              <>
+                                <img src={imageURL[index]} alt="" />
+                                <div
+                                  className="main"
+                                  data-img-url={project.image.url}
+                                />
+                              </>
+                            )}
+                          </div>
                         </div>
                         <div className="details">
                           <span className="category">{project.sequence}</span>
@@ -101,10 +111,6 @@ const Portfolio = () => {
                             alt=""
                           />
                         </div>
-                        <a
-                          className="tonni_tm_full_link popup-youtube"
-                          href="//www.youtube.com/embed/7e90gBu4pas?autoplay=1"
-                        />
                       </div>
                     </li>
                   ))}
@@ -117,4 +123,5 @@ const Portfolio = () => {
     </Fragment>
   );
 };
+
 export default Portfolio;

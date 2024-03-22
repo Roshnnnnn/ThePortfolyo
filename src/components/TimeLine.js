@@ -11,7 +11,20 @@ const TimeLine = () => {
         const filteredData = data.timeline.filter(
           (item) => item.forEducation === true
         );
-        setUser(filteredData);
+        const sortedData = filteredData.sort((a, b) => {
+          const yearDiff =
+            new Date(a.startDate).getFullYear() -
+            new Date(b.startDate).getFullYear();
+          if (yearDiff !== 0) {
+            return yearDiff;
+          } else {
+            return (
+              new Date(a.startDate).getMonth() -
+              new Date(b.startDate).getMonth()
+            );
+          }
+        });
+        setUser(sortedData);
       } catch (error) {
         console.log(error.message);
       }
@@ -27,13 +40,14 @@ const TimeLine = () => {
             <div className="container">
               <div className="tonni_tm_main_title" data-type="flex">
                 <div className="title">
-                  <span>Experience</span>
-                  <h3>Creative Timeline</h3>
+                  <h3>Experience</h3>
                 </div>
                 <div className="subtitle">
                   <p>
-                    Fusce sollicitudin eros id ex maximus gravida non vitae
-                    ante. Cras ac mi a dolor suscipit rutrum ut vitae mi.
+                    "Your work is going to fill a large part of your life, and
+                    the only way to be truly satisfied is to do what you believe
+                    is great work. And the only way to do great work is to love
+                    what you do." - Steve Jobs
                   </p>
                 </div>
               </div>
@@ -64,8 +78,19 @@ const TimeLine = () => {
                           <div className="list_inner">
                             <div className="year">
                               <span>
-                                {new Date(item?.startDate).getFullYear()} -
-                                {new Date(item?.endDate).getFullYear()}
+                                {new Date(item?.startDate).getFullYear()}/
+                                {new Date(item?.startDate).toLocaleString(
+                                  "default",
+                                  { month: "numeric" }
+                                )}
+                              </span>
+                              <span>-</span>
+                              <span>
+                                {new Date(item?.endDate).getFullYear()}/
+                                {new Date(item?.endDate).toLocaleString(
+                                  "default",
+                                  { month: "numeric" }
+                                )}
                               </span>
                             </div>
                           </div>
