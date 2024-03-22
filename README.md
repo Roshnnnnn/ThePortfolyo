@@ -4,16 +4,16 @@ Creating a README.md file for your project is a great idea to provide informatio
 
 # Project Name
 
-![Project Image](img/img/img.png)
+![Project Image](./public//img/img//img.png)
 
 ## Description
 
-This project was completed as part of an internship with Theportfolyo company on Internshala. It was an enriching experience, and I learned a lot while working on it. The project aims to [brief description of the project's purpose or goal].
+This project was completed as part of an internship with Theportfolyo company on Internshala. It was an enriching experience, and I learned a lot while working on it.
 
 ## Screenshots
 
-![Screenshot 1](img/img/img1.png)
-![Screenshot 2](img/img/img2.png)
+![Screenshot 1](./public//img/img//img1.png)
+![Screenshot 2](./public//img/img//img2.png)
 
 ## Usage
 
